@@ -7,9 +7,8 @@ def test_generate():
     generator = TechNewsGenerator(llm="gemini-1.5-pro")
     # Act
     result = generator.generate(
-        topic="Backend",
         length=3000,
-        references=["https://www.nassim.com.br/blog/pt-ms"],
+        references=["https://deno.com/blog/v2.0"],
     )
     print(result, flush=True)
     assert isinstance(result, str)

@@ -9,3 +9,4 @@ class BaseConfig:
     scope: str
     services: List[str]
     target_clients: List[str]
+    categories: List[str] = field(default_factory=lambda: ["Tecnologia", "Notícias"])

@@ -34,6 +34,6 @@ The project includes a testing suite using `pytest` to ensure the functionality 
 1. Ensure that you are in the project's root directory and the virtual environment is activated.
 2. Execute the following command:
 
-    ```bash
-    pytest
-    ```
+```bash
+pytest
+```
