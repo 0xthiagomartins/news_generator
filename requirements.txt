@@ -1,0 +1,13 @@
+pytest
+pytest-cov
+langchain
+langchain-core
+langchain-google-genai
+python-dotenv
+rich
+langchain-unstructured 
+unstructured-client 
+unstructured 
+unstructured[pdf]
+python-magic
+bs4
