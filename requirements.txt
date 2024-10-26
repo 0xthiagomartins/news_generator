@@ -6,9 +6,9 @@ langchain-google-genai
 python-dotenv
 rich
 langchain-unstructured 
-unstructured-client 
+unstructured-client
 unstructured 
 unstructured[pdf]
 python-magic
 bs4
-pika
+nameko==3.0.0-rc11

@@ -1,0 +1,2 @@
+AMQP_URI: ${CLOUD_AMQP}
+SERVICE_NAME: "news_generator"
