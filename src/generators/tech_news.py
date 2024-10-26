@@ -16,7 +16,7 @@ class TechNewsGenerator:
             "Você é um redator profissional contratado pela {business_name}. "
             "A empresa é especializada em {scope}. Eles oferecem serviços de {services}. "
             "Os clientes alvo são {target_clients}. "
-            "Use as seguintes referências para informar sua escrita:\n{reference_section}\n\n"
+            "{reference_section}\n\n"
             "Escreva um artigo noticioso bem-estruturado e envolvente com o seguinte tamanho: {article_length} palavras. "
             "O artigo deve incluir os seguintes elementos:\n"
             "1. Título chamativo\n"
@@ -24,7 +24,6 @@ class TechNewsGenerator:
             "3. Corpo principal dividido em seções com subtítulos\n"
             "4. Conclusão que resume os pontos principais e incentiva a ação\n\n"
             "Considere as melhores práticas de SEO, inserindo palavras-chave relevantes naturalmente ao longo do texto. "
-            "Mantenha um tom profissional e informativo, adequado para o público-alvo."
         ),
         input_variables=[
             "business_name",

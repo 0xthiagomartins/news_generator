@@ -11,3 +11,4 @@ unstructured
 unstructured[pdf]
 python-magic
 bs4
+pika
