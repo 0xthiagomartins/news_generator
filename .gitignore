@@ -2,3 +2,4 @@ __pycache__
 .cursorrules
 resources/
 .coverage
+config.yml

@@ -9,6 +9,15 @@ import requests
 from bs4 import BeautifulSoup
 from .base import BaseConfig
 
+CUSTOM_PROMPT = (
+    "O artigo deve incluir os seguintes elementos:\n"
+    "1. Título chamativo\n"
+    "2. Introdução que captura a atenção do leitor\n"
+    "3. Corpo principal dividido em seções com subtítulos\n"
+    "4. Conclusão que resume os pontos principais e incentiva a ação\n\n"
+    "Considere as melhores práticas de SEO, inserindo palavras-chave relevantes naturalmente ao longo do texto. "
+)
+
 
 class TechNewsGenerator:
     prompt: BasePromptTemplate = PromptTemplate(
@@ -18,12 +27,7 @@ class TechNewsGenerator:
             "Os clientes alvo são {target_clients}. "
             "{reference_section}\n\n"
             "Escreva um artigo noticioso bem-estruturado e envolvente com o seguinte tamanho: {article_length} palavras. "
-            "O artigo deve incluir os seguintes elementos:\n"
-            "1. Título chamativo\n"
-            "2. Introdução que captura a atenção do leitor\n"
-            "3. Corpo principal dividido em seções com subtítulos\n"
-            "4. Conclusão que resume os pontos principais e incentiva a ação\n\n"
-            "Considere as melhores práticas de SEO, inserindo palavras-chave relevantes naturalmente ao longo do texto. "
+            "{custom_prompt}"
         ),
         input_variables=[
             "business_name",
@@ -32,6 +36,7 @@ class TechNewsGenerator:
             "target_clients",
             "article_length",
             "reference_section",
+            "custom_prompt",
         ],
     )
     config: BaseConfig = BaseConfig(
@@ -49,7 +54,8 @@ class TechNewsGenerator:
         target_clients=[],
     )
 
-    def __init__(self, llm: str = "gemini-1.5-flash"):
+    def __init__(self, llm: str = "gemini-1.5-flash", custom_prompt: str = ""):
+        self.custom_prompt: str = custom_prompt if custom_prompt else CUSTOM_PROMPT
         self.chain: Runnable = self.prompt | ChatGoogleGenerativeAI(model=llm)
 
     def load_references(self, references: list[str]) -> str:
@@ -76,6 +82,7 @@ class TechNewsGenerator:
             target_clients=", ".join(self.config.target_clients),
             article_length=length,
             reference_section=references_section,
+            custom_prompt=self.custom_prompt,
         )
         ai_message: AIMessage = self.chain.invoke(formatted_prompt)
         response_data = ai_message.to_json().get("kwargs", {}).get("content", "")
