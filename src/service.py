@@ -15,10 +15,12 @@ class NewsGenerator:
         llm: str = "gemini-1.5-pro",
         length: int = 3000,
         custom_prompt: str = "",
-        temperature: int = 0.7,
+        temperature: float = 0.7,
     ):
         generator = TechNewsGenerator(
-            llm=llm if llm else "gemini-1.5-pro", custom_prompt=custom_prompt
+            llm=llm if llm else "gemini-1.5-pro", 
+            custom_prompt=custom_prompt,
+            temperature=temperature
         )
         result = generator.generate(
             length=length,

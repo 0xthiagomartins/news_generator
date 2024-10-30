@@ -54,9 +54,12 @@ class TechNewsGenerator:
         target_clients=[],
     )
 
-    def __init__(self, llm: str = "gemini-1.5-flash", custom_prompt: str = ""):
+    def __init__(self, llm: str = "gemini-1.5-flash", custom_prompt: str = "", temperature: float = 0.7):
         self.custom_prompt: str = custom_prompt if custom_prompt else CUSTOM_PROMPT
-        self.chain: Runnable = self.prompt | ChatGoogleGenerativeAI(model=llm)
+        self.chain: Runnable = self.prompt | ChatGoogleGenerativeAI(
+            model=llm,
+            temperature=temperature
+        )
 
     def load_references(self, references: list[str]) -> str:
         references_section = ""
